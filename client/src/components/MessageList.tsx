@@ -7,14 +7,14 @@ interface Messages {
 
 export const MessageList: React.FC<{ messages: Array<Messages> }> = props => {
   const messages = props.messages;
-  if (!messages.length) return <p>Оставь сообщение первым.</p>;
+  if (!messages.length) return <p className="empty">Оставь сообщение первым.</p>;
 
   const elems = messages.map(item => {
-    return <li key={item.id}>{item.message}</li>
+    return <li className="messages__elem" key={item.id}>{item.message}</li>
   })
 
   return (
-    <ul id='messages'>
+    <ul id='messages' className="messages">
       {elems}
     </ul>
   )

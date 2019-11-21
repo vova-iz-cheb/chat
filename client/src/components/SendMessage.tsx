@@ -10,9 +10,9 @@ export class SendMessage extends React.Component<{ socket: Sock }> {
   }
 
   render() {
-    return (<form action="" name='message'>
-      <input type="text" id='message' />
-      <input type="submit" value='Send' />
+    return (<form action="" name='message' className="form">
+      <input type="text" id='message' className="form__input" />
+      <input type="submit" value='Send' className="form__submit" />
     </form>)
   }
 }

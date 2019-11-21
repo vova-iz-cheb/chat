@@ -2,6 +2,7 @@ import * as React from 'react';
 import { MessageList } from './MessageList';
 import { SendMessage } from './SendMessage';
 import * as io from 'socket.io-client';
+import '../styles/main.scss'
 
 interface Messages {
   id: number;
@@ -38,10 +39,10 @@ export class App extends React.Component<{}, { messageList: Array<Messages> }> {
 
   render() {
     return (
-      <div>
+      <>
         <MessageList messages={this.state.messageList} />
         <SendMessage socket={socket} />
-      </div>
+      </>
     )
   }
 }
