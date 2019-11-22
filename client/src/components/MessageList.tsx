@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { formatDate } from '../utils/formatDate';
 
 interface Messages {
   id: number;
@@ -13,8 +14,9 @@ export const MessageList: React.FC<{ messages: Array<Messages>, nickname: string
   if (!messages.length) return <p className="empty">Оставь сообщение первым.</p>;
 
   const elems = messages.map(item => {
-    if (nickname === item.nickname) return <div className="messages__wrapper my" key={item.id}><li className="messages__elem my"><span>{item.message}</span></li></div>
-    return <div className="messages__wrapper" key={item.id}><li className="messages__elem"><span>{item.message}</span></li></div>
+    const dateString = formatDate(item.timestamp);
+
+    return <div className={nickname === item.nickname ? "messages__wrapper my" : "messages__wrapper"} key={item.id}><li className={nickname === item.nickname ? "messages__elem my" : "messages__elem"}><span><div className="messages__nickname">{item.nickname}</div>{item.message}<time className='messages__date'>{dateString}</time></span></li></div>
   })
 
   return (

@@ -45,11 +45,12 @@ export class App extends React.Component<{}, { nickname: string, messageList: Ar
 
   componentDidMount() {
     socket.on('chat message', (messageObj: IMessage) => {
-      console.log(messageObj);
+      if (!messageObj.nickname) messageObj.nickname = 'Anonymous';
+
       this.setState({
         messageList: [...this.state.messageList, { id: messageId(), message: messageObj.message, nickname: messageObj.nickname, timestamp: messageObj.timestamp }]
       }, () => {
-        document.getElementById('messages').scrollTop += 40;
+        document.getElementById('messages').scrollTop += 999;
       });
     })
   }
