@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 interface Sock extends Object {
-  emit: (str: string, mes: string) => void;
+  emit: (str: string, mes: { message: string, nickname: string }) => void;
 }
 
-export class SendMessage extends React.Component<{ socket: Sock }> {
+export class SendMessage extends React.Component<{ socket: Sock, nickname: string }> {
   componentDidMount() {
-    document.forms[0].addEventListener('submit', (e) => submitHander(e, this.props.socket));
+    document.getElementsByClassName('form')[0].addEventListener('submit', (e) => submitHander(e, this.props.socket, this.props.nickname));
   }
 
   render() {
@@ -17,10 +17,10 @@ export class SendMessage extends React.Component<{ socket: Sock }> {
   }
 }
 
-function submitHander(e: Event, socket: Sock): void {
+function submitHander(e: Event, socket: Sock, nickname: string): void {
   e.preventDefault();
   const mes = (document.getElementById('message') as HTMLInputElement).value;
   if (!mes) return;
-  socket.emit('chat message', mes);
+  socket.emit('chat message', { message: mes, nickname });
   (document.getElementById('message') as HTMLInputElement).value = '';
 }

@@ -12,9 +12,12 @@ io.on("connection", function(socket) {
     console.log("user disconnected");
   });
 
-  socket.on("chat message", function(mes) {
-    console.log("User Message: " + mes);
-    io.emit("chat message", mes);
+  socket.on("chat message", function(object) {
+    io.emit("chat message", {
+      message: object.message,
+      nickname: object.nickname,
+      timestamp: +new Date()
+    });
   });
 });
 

@@ -10,8 +10,69 @@ html,
 body {
   margin: 0;
   padding: 0;
+  padding-top: 10px;
   font-size: 20px;
   height: 100%;
+}
+
+.modalBox {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.555);
+}
+
+.nickNameForm {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  width: 300px;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__submit,
+  &__input {
+    font-size: 26px;
+    color: #06266f;
+    outline: none;
+    width: 100%;
+  }
+
+  &__input {
+    padding: 5px 5px 5px 10px;
+    border: 1px solid #bec6d8;
+    transition: all 0.25s;
+    &:focus {
+      box-shadow: inset 0 0 1px 1px #a4b0cc;
+    }
+  }
+
+  &__submit {
+    border: 1px solid transparent;
+    padding: 5px 10px;
+    background-color: #d6f870;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s;
+    &:hover {
+      background-color: #b4f200;
+    }
+    &:active,
+    &:focus {
+      box-shadow: 0 0 2px 2px #b4f200;
+    }
+  }
+}
+
+.header {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 .empty {
@@ -25,13 +86,83 @@ body {
   margin-top: 0;
   margin-bottom: 0;
   max-width: 500px;
-  padding: 10px;
+  padding: 21px;
   list-style-type: none;
   overflow: auto;
-  height: calc(100% - 43px);
+  height: calc(100% - 87px);
+
+  &__wrapper {
+    max-width: 60%;
+  }
+
+  &__wrapper.my {
+    margin-left: 40%;
+    text-align: right;
+  }
 
   &__elem {
-    color: inherit;
+    display: inline-block;
+    position: relative;
+    border: 1px solid #bec6d8;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border-top-left-radius: 0;
+
+    color: #06266f;
+    background-color: rgb(233, 245, 244);
+
+    &::after {
+      display: block;
+      position: absolute;
+      content: "";
+      border: 1px solid #bec6d8;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      left: -11px;
+      top: -1px;
+      width: 20px;
+      height: 20px;
+      transform: skewX(45deg);
+      background-color: rgb(233, 245, 244);
+    }
+
+    &::before {
+      display: block;
+      position: absolute;
+      content: "";
+      left: -1px;
+      top: 0;
+      height: 18px;
+      border: 1px solid white;
+    }
+
+    span {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  &__elem.my {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 0;
+    background-color: rgb(210, 231, 210);
+    text-align: left;
+
+    &::after {
+      border-left-color: transparent;
+      border-right-color: #bec6d8;
+      left: initial;
+      right: -11px;
+      transform: skewX(-45deg);
+      background-color: rgb(210, 231, 210);
+    }
+
+    &::before {
+      left: initial;
+      right: -1px;
+      top: 0;
+    }
   }
 }
 
